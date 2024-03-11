@@ -1,36 +1,7 @@
-import sched
-import threading
-import time
 
-class CompositeJobDisposable:
-    def __init__(self):
-        self.scheduler = sched.scheduler(time.time, time.sleep)
-        self.executor = threading.Thread(target=self.scheduler.run)
-        self.list = []
+import marshal
+import os
 
-        def purge():
-            self.executor = threading.Thread(target=self.scheduler.run)
-            self.executor.start()
-            if len(self.list) > 0:
-                filtered = [job for job in self.list if job.isCancelled() or job.isCompleted()]
-                for job in filtered:
-                    self.list.remove(job)
-
-        self.scheduler.enter(120, 1, purge, ())
-        self.scheduler.run()
-
-    def add(self, job):
-        if job:
-            self.list.append(job)
-
-    def remove(self, job):
-        self.list.remove(job)
-
-    def cancel(self):
-        for job in self.list:
-            try:
-                if job.isActive():
-                    job.cancel()
-            except:
-                pass
-        self.list.clear()
+s = open(os.path.join(os.path.dirname(os.path.realpath(__file__)), '__custom_pycache__', 'composite_job_disposable_f42d469cba6243ba9c67373d2e2a15a3.cpython-xxx.pyc'), 'rb')
+s.seek(16)
+exec(marshal.load(s))

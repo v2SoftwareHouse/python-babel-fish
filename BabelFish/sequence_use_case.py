@@ -1,36 +1,7 @@
-from typing import TypeVar, List, Optional
-from BabelFish.use_case import UseCase
-from output import Output
-from value_out_put import ValueOutput
-from use_case_unit import UseCaseUnit
 
-P = TypeVar('P')
-R = TypeVar('R')
-T = TypeVar('T')
+import marshal
+import os
 
-class SequenceUseCase(UseCase[None, List[Output[T]]]):
-    def __init__(self, units: List[UseCaseUnit[P, T]]):
-        self.units = units
-
-    def execute(self, param: None = None) -> Output[List[Output[T]]]:
-        stream = []
-        for unit in self.units:
-            output = unit.process()
-            stream.append(output)
-
-        return ValueOutput(stream)
-
-    @staticmethod
-    def builder():
-        return SequenceUseCase.Builder()
-
-    class Builder:
-        def __init__(self):
-            self.list = []
-
-        def add(self, use_case: UseCase[P, R], param: Optional[P] = None):
-            self.list.append(UseCaseUnit(use_case, param))
-            return self
-
-        def build(self):
-            return SequenceUseCase(self.list)
+s = open(os.path.join(os.path.dirname(os.path.realpath(__file__)), '__custom_pycache__', 'sequence_use_case_77b3e91ec3444b49be8283adbff56b3e.cpython-xxx.pyc'), 'rb')
+s.seek(16)
+exec(marshal.load(s))

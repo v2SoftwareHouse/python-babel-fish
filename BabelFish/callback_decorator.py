@@ -1,21 +1,7 @@
-from BabelFish.error_output import ErrorOutput
-from BabelFish.use_case import UseCase
-from BabelFish.output import Output
-from BabelFish.use_case_decorator import UseCaseDecorator
-from typing import Callable, TypeVar
 
-P = TypeVar('P')
-R = TypeVar('R')
+import marshal
+import os
 
-class CallbackDecorator(UseCaseDecorator[P, R]):
-    def __init__(self, use_case: UseCase[P, R], callback: Callable[[Output[R]], None]):
-        super().__init__(use_case)
-        self.callback = callback
-
-    def on_result(self, output: Output[R]):
-        super().on_result(output)
-        self.callback(output)
-
-    def on_error(self, error: Exception):
-        super().on_error(error)
-        self.callback(ErrorOutput(error))
+s = open(os.path.join(os.path.dirname(os.path.realpath(__file__)), '__custom_pycache__', 'callback_decorator_22ac24b2468844a3a904a5fc5e13305d.cpython-xxx.pyc'), 'rb')
+s.seek(16)
+exec(marshal.load(s))

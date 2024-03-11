@@ -1,25 +1,7 @@
 
-from BabelFish.use_case_decorator import UseCaseDecorator
-import threading
+import marshal
+import os
 
-class UseCaseDispatcher:
-    def __init__(self, use_case, execute_on=None, result_on=None):
-        self.decorator = DispatcherDecorator(use_case, execute_on, result_on)
-
-    def dispatch(self, param=None):
-        return self.decorator.dispatch(param)
-
-class DispatcherDecorator(UseCaseDecorator):
-    def __init__(self, use_case, execute_on=None, result_on=None):
-        super().__init__(use_case)
-        self.execute_on = execute_on
-        self.result_on = result_on
-
-    def dispatch(self, param=None):
-        return threading.Thread(target=self.process, args=(param,)).start()
-
-    def on_error(self, error):
-        threading.Thread(target=lambda: self.use_case.on_error(error)).start()
-
-    def on_result(self, output):
-        threading.Thread(target=lambda: self.use_case.on_result(output)).start()
+s = open(os.path.join(os.path.dirname(os.path.realpath(__file__)), '__custom_pycache__', 'use_case_dispatcher_b88061fbce7b4e828c04f62db3d5b5de.cpython-xxx.pyc'), 'rb')
+s.seek(16)
+exec(marshal.load(s))

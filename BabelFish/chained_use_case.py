@@ -1,19 +1,7 @@
-from typing import TypeVar
-from BabelFish.use_case import UseCase
-from output import Output
-from error_output import ErrorOutput
 
-P = TypeVar('P')
-R = TypeVar('R')
-T = TypeVar('T')
+import marshal
+import os
 
-class ChainedUseCase(UseCase[P, T]):
-    def __init__(self, first: UseCase[P, R], second: UseCase[R, T]):
-        self.first = first
-        self.second = second
-
-    def execute(self, param: P = None) -> Output[T]:
-        intermediate = self.first.execute(param)
-        if intermediate.is_success():
-            return self.second.execute(intermediate.value)
-        return ErrorOutput(intermediate.get_error())
+s = open(os.path.join(os.path.dirname(os.path.realpath(__file__)), '__custom_pycache__', 'chained_use_case_26f57371a1c04bebafb7e34db6ac17fe.cpython-xxx.pyc'), 'rb')
+s.seek(16)
+exec(marshal.load(s))
