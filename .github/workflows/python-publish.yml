@@ -30,6 +30,9 @@ jobs:
           python setup.py sdist bdist_wheel  # Could also be python -m build
       - name: Publish package distributions to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          oidc: false
+          password: ${{ secrets.PYPI_API_TOKEN }}
 
 
 
