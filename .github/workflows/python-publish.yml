@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: pypi
-      url: https://pypi.org/p/Babel-Fish
+      url: https://pypi.org/p/babelfish
     permissions:
       id-token: write
     steps:
