@@ -1,8 +1,8 @@
 from setuptools import find_packages, setup
 
 setup(
-    name='babel-fish',
-    packages=find_packages(include=['BabelFish']),
+    name='Ozymandias',
+    packages=find_packages(include=['ozymandias']),
     version='0.0.1',
     description='A framework to drive a clean code',
     long_description=open('README.md').read(),
