@@ -1,7 +1,7 @@
 from setuptools import find_packages, setup
 
 setup(
-    name='Babel-Fish',
+    name='babelfish',
     packages=find_packages(include=['BabelFish']),
     version='0.0.1',
     description='A framework to drive a clean code',
